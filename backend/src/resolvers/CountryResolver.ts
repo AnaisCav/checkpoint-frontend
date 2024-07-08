@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Query, Mutation, Arg, Int } from "type-graphql";
 import { Country, NewCountryInput } from "../entities/Country";
 import { GraphQLError } from "graphql";
 
@@ -10,8 +10,8 @@ export class CountryResolver {
   }
 
   @Query(() => Country)
-  async country(@Arg("code") code: string) {
-    return Country.findOne({ where: { code }, relations: { continent: true } });
+  async country(@Arg("countryId", () => Int) id: number) {
+    return Country.findOne({ where: { id }, relations: { continent: true } });
   }
 
   @Mutation(() => Country)

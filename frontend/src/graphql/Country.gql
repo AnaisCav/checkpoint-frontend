@@ -1,0 +1,12 @@
+query Country($countryId: Int!) {
+  country(countryId: $countryId) {
+    id
+    code
+    name
+    emoji
+    continent {
+      id
+      name
+    }
+  }
+}

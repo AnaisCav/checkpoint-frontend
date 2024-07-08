@@ -11,7 +11,8 @@ import schemaPromise from "./schema";
 const port = process.env.SERVER_PORT || 4000;
 
 const allowedOrigins =
-  process.env.CORS_ALLOWED_ORIGINS || "http://localhost:3000";
+  process.env.CORS_ALLOWED_ORIGINS ||
+  "http://localhost:3000,http://localhost:4001/graphql";
 
 schemaPromise.then(async (schema) => {
   await db.initialize();
