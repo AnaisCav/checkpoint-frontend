@@ -1,11 +1,13 @@
 import {
   useAddCountryMutation,
   useContinentsQuery,
+  useCountriesQuery,
 } from "@/graphql/generated/schema";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
 
 const AddCountry = () => {
+  const { refetch } = useCountriesQuery();
   const [addCountry] = useAddCountryMutation();
   const router = useRouter();
 
@@ -20,7 +22,7 @@ const AddCountry = () => {
 
     addCountry({ variables: { data: formJSON } })
       .then((res) => {
-        router.push(`/countries/${res.data?.addCountry.id}`);
+        refetch();
       })
       .catch(console.error);
   };
